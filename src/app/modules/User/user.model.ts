@@ -49,6 +49,7 @@ userSchema.post('save', async function (doc, next) {
 
 userSchema.statics.isUserExist = async function (email: string) {
   const userAlreadyExist = await User.findOne({ email }).select('+password');
+
   return userAlreadyExist;
 };
 

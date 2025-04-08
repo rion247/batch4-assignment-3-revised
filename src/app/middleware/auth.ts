@@ -34,7 +34,7 @@ const auth = (...requiredRoles: TUser_role[]) => {
 
     const { userEmail, role } = decoded;
 
-    const userData = await User.findOne({ email: userEmail });
+    const userData = await User.isUserExist(userEmail);
 
     if (!userData) {
       throw new AppError(

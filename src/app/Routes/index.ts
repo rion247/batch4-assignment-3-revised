@@ -1,14 +1,14 @@
 import express from 'express';
-// import { BlogRoutes } from '../modules/Blog/blog.routes';
+import { BlogRoutes } from '../modules/Blog/blog.routes';
 import { UserRoutes } from '../modules/User/user.routes';
 
 const router = express.Router();
 
 const modelRoutes = [
-  // {
-  //   pathName: '/blogs',
-  //   route: BlogRoutes,
-  // },
+  {
+    pathName: '/blogs',
+    route: BlogRoutes,
+  },
   {
     pathName: '/auth',
     route: UserRoutes,

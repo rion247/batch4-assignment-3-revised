@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { Model } from 'mongoose';
+import { HydratedDocument, Model } from 'mongoose';
 import { USER_ROLE } from './user.constant';
 
 export type TUserRole = 'admin' | 'user';
@@ -23,7 +23,7 @@ export interface TuserInformationForJWT {
 }
 
 export interface TUserModel extends Model<TUser> {
-  isUserExist(email: string): Promise<TUser | null>;
+  isUserExist(email: string): Promise<HydratedDocument<TUser> | null>;
   isUserPasswordMatched(
     plainTextPassword: string,
     hashedTextPassword: string,
