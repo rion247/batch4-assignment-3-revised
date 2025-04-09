@@ -15,6 +15,48 @@ const createBlog = catchAsync(async (req, res) => {
   });
 });
 
+const updateBlog = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const token = req.user;
+  const result = await BlogService.updateBlogInToDB(id, token, req.body);
+
+  sendResponse(res, {
+    statusCode: status.OK,
+    success: true,
+    message: 'Blog updated successfully',
+    data: result,
+  });
+});
+
+const deleteBlog = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const token = req.user;
+
+  await BlogService.deleteBlogInToDB(id, token);
+
+  res.status(status.OK).json({
+    success: true,
+    message: 'Blog deleted successfully',
+    statusCode: status.OK,
+  });
+});
+
+const getBlog = catchAsync(async (req, res) => {
+  const query = req?.query;
+
+  const result = await BlogService.getBlogFromDB(query);
+
+  sendResponse(res, {
+    statusCode: status.OK,
+    success: true,
+    message: 'Blogs fetched successfully',
+    data: result,
+  });
+});
+
 export const BlogController = {
   createBlog,
+  updateBlog,
+  deleteBlog,
+  getBlog,
 };
