@@ -165,17 +165,3 @@ export const BlogService = {
   deleteBlogInToDB,
   getBlogFromDB,
 };
-
-// {
-//   "success": true,
-//   "message": "Blogs fetched successfully",
-//   "statusCode": 200,
-//   "data": [
-//     {
-//       "_id": "string",
-//       "title": "string",
-//       "content": "string",
-//       "author": { "details" }
-//     }
-//   ]
-// }
