@@ -11,4 +11,10 @@ router.delete(
   AdminActionController.blockUser,
 );
 
+router.delete(
+  '/blogs/:id',
+  auth(USER_ROLE.admin),
+  AdminActionController.deleteBlog,
+);
+
 export const AdminActionRoutes = router;

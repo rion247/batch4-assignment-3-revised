@@ -2,6 +2,7 @@ import { User } from '../User/user.model';
 import { JwtPayload } from 'jsonwebtoken';
 import AppError from '../../errors/AppError';
 import status from 'http-status';
+import { Blog } from '../Blog/blog.model';
 
 const blockUserInToDB = async (id: string, decodedToken: JwtPayload) => {
   const email = decodedToken?.userEmail;
@@ -70,6 +71,49 @@ const blockUserInToDB = async (id: string, decodedToken: JwtPayload) => {
   return null;
 };
 
+const deleteBlogFromDB = async (id: string, decodedToken: JwtPayload) => {
+  const email = decodedToken?.userEmail;
+
+  const adminData = await User.isUserExist(email);
+
+  if (!adminData) {
+    throw new AppError(
+      status.NOT_FOUND,
+      'Sorry!!! This admin is not found !!!',
+    );
+  }
+
+  const adminRole = adminData?.role;
+
+  if (adminRole !== 'admin') {
+    throw new AppError(
+      status.UNAUTHORIZED,
+      'Sorry!!! You are not authorized!!!',
+    );
+  }
+
+  const adminStatus = adminData?.isBlocked;
+
+  if (adminStatus) {
+    throw new AppError(
+      status.BAD_REQUEST,
+      'Sorry!!! This admin is already blocked !!!',
+    );
+  }
+
+  const deleteBlog = await Blog.findByIdAndDelete(id, { new: true });
+
+  if (!deleteBlog) {
+    throw new AppError(
+      status.INTERNAL_SERVER_ERROR,
+      'Sorry!!! Delete blog request failed!!!',
+    );
+  }
+
+  return null;
+};
+
 export const AdminActionService = {
   blockUserInToDB,
+  deleteBlogFromDB,
 };
