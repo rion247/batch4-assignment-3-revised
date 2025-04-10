@@ -10,7 +10,7 @@ class QueryBuilder<T> {
   }
 
   search(searchAbleFields: string[]) {
-    const search = this?.query?.search;
+    const search = this?.query?.search as string;
 
     if (search) {
       this.modelQuery = this.modelQuery.find({
@@ -36,6 +36,11 @@ class QueryBuilder<T> {
     ];
 
     excludeFields.forEach((el) => delete queryObject[el]);
+
+    if (queryObject?.filter) {
+      queryObject.author = queryObject.filter;
+      delete queryObject.filter;
+    }
 
     this.modelQuery = this.modelQuery.find(queryObject as FilterQuery<T>);
 

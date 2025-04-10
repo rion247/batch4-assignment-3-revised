@@ -159,9 +159,25 @@ const getBlogFromDB = async (query: Record<string, unknown>) => {
   return getBlogs;
 };
 
+const getSingleBlogFromDB = async (id: string) => {
+  const getSingleBlog = await Blog.findById(id);
+
+  if (!getSingleBlog) return null;
+
+  const getBlogs = {
+    _id: getSingleBlog?._id,
+    title: getSingleBlog?.title,
+    content: getSingleBlog?.content,
+    author: getSingleBlog?.author,
+  };
+
+  return getBlogs;
+};
+
 export const BlogService = {
   createBlogInToDB,
   updateBlogInToDB,
   deleteBlogInToDB,
   getBlogFromDB,
+  getSingleBlogFromDB,
 };

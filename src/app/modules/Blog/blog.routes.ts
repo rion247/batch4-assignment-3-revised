@@ -7,6 +7,8 @@ import validateRequest from '../../middleware/validateRequest';
 
 const router = express.Router();
 
+router.get('/:id', BlogController.getSingleBlog);
+
 router.patch(
   '/:id',
   auth(USER_ROLE.user),
