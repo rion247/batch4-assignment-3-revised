@@ -1,6 +1,7 @@
 import express from 'express';
 import { BlogRoutes } from '../modules/Blog/blog.routes';
 import { UserRoutes } from '../modules/User/user.routes';
+import { AdminActionRoutes } from '../modules/Admin Actions/adminActions.routes';
 
 const router = express.Router();
 
@@ -12,6 +13,10 @@ const modelRoutes = [
   {
     pathName: '/auth',
     route: UserRoutes,
+  },
+  {
+    pathName: '/admin',
+    route: AdminActionRoutes,
   },
 ];
 
