@@ -16,8 +16,8 @@ Blog Project is a full-featured backend system for a multi-role blogging platfor
 
 ### **Admin Credentials**
 
-Email: emily.johnson@example.com
-Password: admin123
+- **Email:** emily.johnson@example.com
+- **Password:** admin123
 
 ## **Features**
 
