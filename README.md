@@ -23,32 +23,38 @@ Blog Project is a full-featured backend system for a multi-role blogging platfor
 
 ### **Roles**
 
-- **Admin:**
+**Admin:**
+
 - Can delete any blog.
 - Can block users.
 - Cannot update blogs.
 
-- **User:**
+**User:**
+
 - Can register and log in.
 - Can create, update, and delete their own blogs.
 
-- **Authentication & Authorization:**
+**Authentication & Authorization:**
+
 - Secure login with JWT.
 - Middleware to restrict routes based on roles.
 - Blocked users cannot perform restricted actions.
 
-- **Blog Operations:**
+**Blog Operations:**
+
 - Create Blog: Authenticated users can create blog posts.
 - Read Blogs: Publicly accessible with support for search, sort, and filter.
 - Update Blog: Users can update their own blogs.
 - Delete Blog: Users can delete their own blogs. Admins can delete any blog.
 
-- **Blog Query Support:**
+**Blog Query Support:**
+
 - Search: By title or content.
 - Sort: By fields like createdAt, title, etc.
 - Filter: By authorId.
 
-- **Robust Error Handling:**
+**Robust Error Handling:**
+
 - Centralized error handler returns standard format.
 - Zod validation errors.
 - Not found errors.
